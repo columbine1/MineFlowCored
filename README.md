@@ -47,5 +47,5 @@ The Jenkins server is responsible for deploying code and generating artifacts to
 
 ### Who do I talk to? ###
 
-* **Ashford** - can help with administrative problems on the remote machine
+* **Zak** - can help with administrative problems on the remote machine
 * **Dragon** - can help with spigot/bungee server issues
