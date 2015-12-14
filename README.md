@@ -46,6 +46,6 @@ The Jenkins server handles deploying code and generating artifacts to use in bot
 
 ### Who do I talk to? ###
 
-* **Luke** - can help with anything regarding the layout of the code
+* **Luke** - can help with anything regarding the code
 * **Donovon** - can help with administrative problems on the remote machine
 * **Matthew** - can help with spigot/bungee server issues
