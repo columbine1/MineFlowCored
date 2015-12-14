@@ -6,8 +6,7 @@ This is where all core Factions functionality and most plugins are controlled.
 
 ### Modules ###
 
-* **FactionsFly** - custom implementation of a /fly command that can only be used in your Faction territory. This module also provides support for adding a cost to use, auto disabling when an enemy comes within X blocks of you, and auto disabling during combat.
-* **MFExtras** - small fixes and add-ons for Mineflow Factions.
+* **MineflowCore** - provides all core functionality for Mineflow Factions in addition to smaller fixes and add-ons.
 
 ---
 
