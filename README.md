@@ -44,14 +44,6 @@ The Jenkins server handles deploying code and generating artifacts to use in bot
 
 ---
 
-### Versions ###
-
-* **Java** - 1.8.0_45
-* **Spigot** - git-Spigot-44c59bf-1880a9c (MC: 1.8.7) (Implementing API version 1.8.7-R0.1-SNAPSHOT)
-* **Vault** - 1.5.3-b37
-
----
-
 ### Who do I talk to? ###
 
 * **Luke** - can help with anything regarding the layout of the code
