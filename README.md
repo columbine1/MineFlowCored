@@ -40,7 +40,7 @@ your IDE to the installation folder and/or set the `$M2_HOME` environment variab
 
 ### Continuous Integration ###
 
-The Jenkins server handles deploying code and generating artifacts to use in both test and live server builds. However, if you want to update the Mineflow maven repository, then you can run 'mvn deploy' on the project you want to deploy. The POM files for projects don't have to be touched if you followed the steps from *Maven Setup* properly.
+The Jenkins server handles deploying code and generating artifacts to use in both test and live server builds. However, if you want to update the Mineflow maven repository, then you can run 'mvn deploy' on the project you want to deploy. The POM files for projects don't have to be touched if you followed the steps from *Maven Setup* properly. 
 
 ---
 
