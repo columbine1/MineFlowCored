@@ -26,7 +26,7 @@ public class PlayerDeath implements Listener {
 			HeadManager.getInstance().dropHeads(killer, e.getEntity());
 		}
 		
-		Player player = e.getEntity();
+		final Player player = e.getEntity();
 		
 		plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 			public void run() {

@@ -13,6 +13,8 @@ import gmail.inkzzzmc.com.mfc.listeners.PlayerInteract;
 import gmail.inkzzzmc.com.mfc.listeners.PlayerListener;
 import gmail.inkzzzmc.com.mfc.listeners.ProjectileLaunch;
 import gmail.inkzzzmc.com.mfc.listeners.SkillLevelChange;
+import gmail.inkzzzmc.com.mfc.placeholder.DeluxePlaceholderHook;
+import gmail.inkzzzmc.com.mfc.placeholder.PlaceholderHandler;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
 import gmail.inkzzzmc.com.mfc.player.PlayerManager;
 import gmail.inkzzzmc.com.mfc.threads.DiscountTimer;
@@ -75,7 +77,7 @@ public class Main extends JavaPlugin {
 			}
 		}, 50L);
 		
-//		hook();
+		chatHook();
 		Language.loadMessages();
 		
 		Level.setGlobalDiscount(getConfig().getDouble("Global-Discount"), getConfig().getLong("Global-Discount-TimeStamp"));
@@ -100,7 +102,7 @@ public class Main extends JavaPlugin {
 		getConfig().set("Global-Discount-TimeStamp", Level.discount_timestamp);
 		saveConfig();
 		
-//		PlaceholderHandler.unregisterPlaceholderHook(this);
+		PlaceholderHandler.unregisterPlaceholderHook(this);
 		
 	}
 	
@@ -168,29 +170,29 @@ public class Main extends JavaPlugin {
 	    return (permission != null);
 	 }
 	 
-//	 private void hook() {
-//		 
-//			if(getServer().getPluginManager().isPluginEnabled("DeluxeChat")) {
-//				
-//				boolean hooked = PlaceholderHandler.registerPlaceholderHook(this,
-//						new DeluxePlaceholderHook() {
-//					@Override
-//					public String onPlaceholderRequest(Player player, String arg) {
-//						if(arg.equalsIgnoreCase("mineflowcore_level")) {
-//							return String.valueOf(PlayerManager.getPlayer(player).getLevel().getLevel());
-//						}
-//						return null;
-//					}
-//				});
-//				
-//				if(hooked) {
-//					getLogger().info("Player levels successfully hooked into deluxe chat.");
-//				} else {
-//					getLogger().warning("Player levels coudln't hook into DeluxeChat!");
-//				}
-//					
-//			}
-//		 
-//	 }
+	 private void chatHook() {
+		 
+			if(getServer().getPluginManager().isPluginEnabled("DeluxeChat")) {
+				
+				boolean hooked = PlaceholderHandler.registerPlaceholderHook(this,
+						new DeluxePlaceholderHook() {
+					@Override
+					public String onPlaceholderRequest(Player player, String arg) {
+						if(arg.equalsIgnoreCase("level")) {
+							return String.valueOf(PlayerManager.getPlayer(player).getLevel().getLevel());
+						}
+						return null;
+					}
+				});
+				
+				if(hooked) {
+					getLogger().info("Player levels successfully hooked into deluxe chat.");
+				} else {
+					getLogger().warning("Player levels coudln't hook into DeluxeChat!");
+				}
+					
+			}
+		 
+	 }
 	
 }
