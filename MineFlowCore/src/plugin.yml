@@ -1,0 +1,43 @@
+name: MineflowCore
+main: gmail.inkzzzmc.com.mfc.Main
+version: 1.0
+author: [Inkzzz]
+commands:
+  logout:
+    description: Checks if you are in combat or not.
+  withdraw:
+    description: Withdraw money onto a note!
+  withdrawexp:
+    description: Withdraw exp onto a voucher!
+  wild:
+    description: Teleports you to the wild!
+  withdrawmcmmo:
+    description: Withdraws mcmmo skills from your user.
+  feed:
+    description: Replenishes your hunger!
+  fix:
+    description: Fixes the item in your hand!
+  jellylegs:
+    description: Toggles jelly legs for your character.
+  lightning:
+    description: Spawn lightning at your eye location.
+  levelup:
+    description: Levels up your rank.
+  levels:
+    description: Add level up discounts!
+  discount:
+    description: Check level-up discounts!
+  boostergive:
+    description: Gives a player a booster.
+  givespawner:
+    description: Gives a spawner to the target player.
+  giveccegg:
+    description: Gives a charged creeper to tge target player.
+  addcredits:
+    description: Gives the user credits to redeem.
+  removecredits:
+    description: Removes credits from the user.
+  credits:
+    description: Checks how many credits you have!
+  redeem:
+    description: Redeems credits to a skill!

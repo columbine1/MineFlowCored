@@ -72,6 +72,7 @@ public class PlayerListener implements Listener {
 		}
 		
 		fplayer.saveData(true);
+		PlayerManager.removePlayer(fplayer);
 		
 	}
 	
