@@ -30,6 +30,7 @@ public class MineFlowPlayer {
 	private long discount_timestamp;
 	
 	private int gapples;
+	private boolean to_kill;
 	
 	public MineFlowPlayer(Player player) {
 		this.player = player;
@@ -42,6 +43,7 @@ public class MineFlowPlayer {
 		this.fix_timestamp = 0;
 		this.lightning_timestamp = 0;
 		this.gapples = 0;
+		this.to_kill = false;
 		
 		if(file.isConfigurationSection(player.getUniqueId().toString())) {
 			
@@ -302,6 +304,20 @@ public class MineFlowPlayer {
 	 */
 	public void setCredits(final int credits) {
 		this.credits = credits;
+	}
+	
+	/**
+	 * @return a value on whether the player needs to be killed.
+	 */
+	public boolean combatLogged(){
+		return this.to_kill;
+	}
+	
+	/*
+	 * Sets the user to be killed / not to be killed.
+	 */
+	public void setToKilled(boolean to_kill) {
+		this.to_kill = to_kill;
 	}
 	
 	/**

@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import com.massivecraft.factions.FPlayer;
@@ -33,7 +34,17 @@ public class PlayerListener implements Listener {
 			MineFlowPlayer fplayer = new MineFlowPlayer(player);
 			PlayerManager.addPlayer(fplayer);
 		} else {
-			PlayerManager.getPlayer(player).setPlayer(player);
+
+			MineFlowPlayer fplayer = PlayerManager.getPlayer(player);	
+			fplayer.setPlayer(player);
+			
+			if(fplayer.combatLogged()) {
+				player.getInventory().clear();
+				player.getInventory().setArmorContents(null);
+				player.setHealth(0);
+				fplayer.setToKilled(false);
+			}
+			
 		}
 		
 	}
@@ -41,13 +52,26 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onLeave(final PlayerQuitEvent e) {
 		
-		MineFlowPlayer player = PlayerManager.getPlayer(e.getPlayer());
+		final Player player = e.getPlayer();
+		final MineFlowPlayer fplayer = PlayerManager.getPlayer(player);
 		
-		if(player.isInCombat()) {
-			player.getPlayer().setHealth(0);
+		if(fplayer.isInCombat()) {
+			for(ItemStack is : player.getInventory().getContents()) {
+				if(is == null) {
+					continue;
+				}
+				player.getWorld().dropItemNaturally(player.getLocation(), is);
+			}
+			for(ItemStack is : player.getInventory().getArmorContents()) {
+				if(is == null) {
+					continue;
+				}
+				player.getWorld().dropItemNaturally(player.getLocation(), is);
+			}
+			fplayer.setToKilled(true);
 		}
 		
-		player.saveData(true);
+		fplayer.saveData(true);
 		
 	}
 	

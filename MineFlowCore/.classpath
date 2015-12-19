@@ -2,10 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Luke Denham/Downloads/mcMMO (10).jar"/>
 	<classpathentry kind="lib" path="D:/Plugins/Vault.jar"/>
 	<classpathentry kind="lib" path="D:/Fatality 3/Factions-01 - release/plugins/Factions.jar.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Luke Denham/Downloads/paperspigot.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Luke Denham/Downloads/DeluxeChat-1.jar"/>
+	<classpathentry kind="lib" path="D:/Fatality 2.0/Servers - release/Factions/Fire/plugins/mcMMO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
