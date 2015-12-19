@@ -49,6 +49,58 @@ public class ItemManager {
 		return builder.getStack();
 	}
 	
+	/*
+	 * Checks if @param itemstack has a protection rune. 
+	 */
+	public boolean hasProtection(final ItemStack itemstack) {
+		
+		if( itemstack != null ) {
+			if( itemstack.hasItemMeta() ) {
+				
+				final ItemMeta meta = itemstack.getItemMeta();
+				
+				if( meta.hasLore() ) {
+					
+					List<String> lore = meta.getLore();
+					
+					for(String s : lore) {
+						
+						if(s.equalsIgnoreCase(Utils.toColor("&f&lPROTECTION RUNE"))) {
+							return true;
+						}
+						
+					}
+					
+				}
+				
+			}
+		}
+		return false;
+	}
+	
+	public ItemStack removeProtectionRune(final ItemStack itemstack) {
+		
+		final ItemMeta meta = itemstack.getItemMeta();
+		
+		if( meta.hasLore() ) {
+			
+			List<String> lore = new ArrayList<String>(meta.getLore());
+			
+			for(String s : lore) {
+				
+				if(s.equalsIgnoreCase(Utils.toColor("&f&lPROTECTION RUNE"))) {
+					lore.remove(s);
+				}
+				
+			}
+			
+			meta.setLore(lore);
+			itemstack.setItemMeta(meta);
+			
+		}
+		return itemstack;
+	}
+	
 	/**
 	 * 
 	 * Applies the protection rune to @param itemstack.
