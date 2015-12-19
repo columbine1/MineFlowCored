@@ -1,5 +1,6 @@
 package net.inkzzz.mineflow.customenchantments;
 
+import net.inkzzz.mineflow.customenchantments.commands.ProtectionRune_Command;
 import net.inkzzz.mineflow.customenchantments.listeners.InventoryClickListener;
 
 import org.bukkit.event.Listener;
@@ -11,6 +12,8 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		
 		registerListeners(new InventoryClickListener());
+		
+		getCommand("protectionrune").setExecutor(new ProtectionRune_Command());
 		
 	}
 	

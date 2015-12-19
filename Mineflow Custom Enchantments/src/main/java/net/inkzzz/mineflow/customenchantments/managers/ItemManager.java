@@ -8,8 +8,8 @@ import net.inkzzz.mineflow.customenchantments.utils.Utils;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Material;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -71,6 +71,19 @@ public class ItemManager {
 		meta.setLore(lore);
 		itemstack.setItemMeta(meta);
 		return itemstack;
+	}
+	
+	/*
+	 * Checks if @param itemstack can have a protection rune applied to it.
+	 */
+	public boolean canApplyRune(final ItemStack itemstack) {
+		return itemstack.getType() == Material.DIAMOND_HELMET ||
+				itemstack.getType() == Material.DIAMOND_CHESTPLATE ||
+				itemstack.getType() == Material.DIAMOND_LEGGINGS || 
+				itemstack.getType() == Material.DIAMOND_BOOTS ||
+				itemstack.getType() == Material.DIAMOND_SWORD ||
+				itemstack.getType() == Material.DIAMOND_AXE ||
+				itemstack.getType() == Material.BOW;
 	}
 	
 	/*

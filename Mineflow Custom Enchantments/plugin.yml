@@ -2,3 +2,6 @@ name: mineflowCustomEnchantments
 main: net.inkzzz.mineflow.customenchantments.Main
 version: 1.0
 author: [Inkzzz]
+commands:
+  protectionrune:
+    description: Gives the user a protection rune.
