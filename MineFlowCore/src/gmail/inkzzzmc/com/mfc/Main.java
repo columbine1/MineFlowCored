@@ -1,18 +1,12 @@
 package gmail.inkzzzmc.com.mfc;
 
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandFactory;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandManager;
 import gmail.inkzzzmc.com.mfc.language.Language;
 import gmail.inkzzzmc.com.mfc.levels.Level;
 import gmail.inkzzzmc.com.mfc.levels.LevelManager;
-import gmail.inkzzzmc.com.mfc.listeners.ConsumeListener;
-import gmail.inkzzzmc.com.mfc.listeners.CraftItem;
-import gmail.inkzzzmc.com.mfc.listeners.LevelChange;
-import gmail.inkzzzmc.com.mfc.listeners.PlayerDeath;
-import gmail.inkzzzmc.com.mfc.listeners.PlayerInteract;
-import gmail.inkzzzmc.com.mfc.listeners.PlayerListener;
-import gmail.inkzzzmc.com.mfc.listeners.ProjectileLaunch;
-import gmail.inkzzzmc.com.mfc.listeners.SkillLevelChange;
+import gmail.inkzzzmc.com.mfc.listeners.*;
 import gmail.inkzzzmc.com.mfc.placeholder.DeluxePlaceholderHook;
 import gmail.inkzzzmc.com.mfc.placeholder.PlaceholderHandler;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
@@ -41,6 +35,8 @@ public class Main extends JavaPlugin {
 	
 	public static Economy economy = null;
 	public static Permission permission = null;
+
+	private WorldGuardPlugin wg;
 	
 	@Override
 	public void onEnable() {
@@ -54,7 +50,7 @@ public class Main extends JavaPlugin {
 		
 		LevelManager.getInstance().loadLevels();
 		
-		loadListeners(new PlayerListener(), new PlayerInteract(), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this));
+		loadListeners(new PlayerListener(), new PlayerInteract(), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
 		new PlayerTimer().runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
@@ -81,7 +77,9 @@ public class Main extends JavaPlugin {
 		Language.loadMessages();
 		
 		Level.setGlobalDiscount(getConfig().getDouble("Global-Discount"), getConfig().getLong("Global-Discount-TimeStamp"));
-		
+
+		wg = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
+
 	}
 	
 	@Override
@@ -194,5 +192,9 @@ public class Main extends JavaPlugin {
 			}
 		 
 	 }
+
+	public WorldGuardPlugin getWorldGuard() {
+		return wg;
+	}
 	
 }

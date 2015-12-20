@@ -39,7 +39,7 @@ public class MineFlowPlayer {
 		this.xp = PlayerManager.setXPLevels(this);
 		this.money = Main.economy.getBalance(player);
 		this.wildTimestamp = 0;
-		this.jellylegs = (player.hasPermission("mineflow.jellylegs") ? true : false);	
+		this.jellylegs = player.hasPermission("mineflow.jellylegs");
 		this.fix_timestamp = 0;
 		this.lightning_timestamp = 0;
 		this.gapples = 0;

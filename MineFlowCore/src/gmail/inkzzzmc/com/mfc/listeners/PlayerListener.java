@@ -1,5 +1,8 @@
 package gmail.inkzzzmc.com.mfc.listeners;
 
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.flags.DefaultFlag;
+import gmail.inkzzzmc.com.mfc.Main;
 import gmail.inkzzzmc.com.mfc.language.Language;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
 import gmail.inkzzzmc.com.mfc.player.PlayerManager;
@@ -96,10 +99,23 @@ public class PlayerListener implements Listener {
 			
 			FPlayer fp = FPlayers.getInstance().getByPlayer(player);
 			FPlayer dp = FPlayers.getInstance().getByPlayer(damager);
-			
+
+			ApplicableRegionSet regionSet = Main.getPlugin(Main.class).getWorldGuard().getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation());
+			if(!regionSet.allows(DefaultFlag.PVP)) {
+				return;
+			}
+
 			if(!fp.hasFaction() || !dp.hasFaction()) {
 				fplayer.setCombat(15);
 				fdamager.setCombat(15);
+
+				if(player.isFlying()) {
+					player.setFlying(false);
+				}
+				if(damager.isFlying()) {
+					damager.setFlying(false);
+				}
+
 				return;
 			}
 			
@@ -109,6 +125,13 @@ public class PlayerListener implements Listener {
 			
 			fplayer.setCombat(15);
 			fdamager.setCombat(15);
+
+			if(player.isFlying()) {
+				player.setFlying(false);
+			}
+			if(damager.isFlying()) {
+				damager.setFlying(false);
+			}
 			
 		}
 	}
