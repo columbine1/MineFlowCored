@@ -7,13 +7,13 @@ import gmail.inkzzzmc.com.mfc.language.Language;
 import gmail.inkzzzmc.com.mfc.levels.Level;
 import gmail.inkzzzmc.com.mfc.levels.LevelManager;
 import gmail.inkzzzmc.com.mfc.listeners.*;
-import gmail.inkzzzmc.com.mfc.placeholder.DeluxePlaceholderHook;
-import gmail.inkzzzmc.com.mfc.placeholder.PlaceholderHandler;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
 import gmail.inkzzzmc.com.mfc.player.PlayerManager;
 import gmail.inkzzzmc.com.mfc.threads.DiscountTimer;
 import gmail.inkzzzmc.com.mfc.threads.PlayerTimer;
 import gmail.inkzzzmc.com.mfc.utils.FileUtil;
+import me.clip.deluxechat.placeholders.DeluxePlaceholderHook;
+import me.clip.deluxechat.placeholders.PlaceholderHandler;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
@@ -99,7 +99,7 @@ public class Main extends JavaPlugin {
 		getConfig().set("Global-Discount", Level.global_discount);
 		getConfig().set("Global-Discount-TimeStamp", Level.discount_timestamp);
 		saveConfig();
-		
+
 		PlaceholderHandler.unregisterPlaceholderHook(this);
 		
 	}
