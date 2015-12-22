@@ -12,6 +12,7 @@ public enum Language {
 	 */
 	
 	PREFIX("PREFIX", "&e(&e&l*&e)"),
+	TAG_BAR_MESSAGE("TAG_BAR_MESSAGE", "%prefix% &eCombat Tag: &7&o%time%s"),
 	NOT_IN_COMBAT("NOT_IN_COMBAT", "%prefix% &eYou're not in combat."),
 	IN_COMBAT("IN_COMBAT", "%prefix% &eYou can logout in &7&o%time% &eseconds!"),
 	OUT_OF_COMBAT("OUT_OF_COMBAT", "%prefix% &eYou're now out of combat."),

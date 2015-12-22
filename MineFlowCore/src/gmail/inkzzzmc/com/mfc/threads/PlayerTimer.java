@@ -12,6 +12,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerTimer extends BukkitRunnable {
 
+	private Main plugin;
+
+	public PlayerTimer(Main plugin) {
+		this.plugin = plugin;
+	}
+
 	public void run() {
 		
 		for(Player players : Bukkit.getOnlinePlayers()) {
@@ -24,10 +30,12 @@ public class PlayerTimer extends BukkitRunnable {
 			
 			if(player.isInCombat()) {
 				
-				player.setCombat(Integer.valueOf(player.getCombat() - 1));
+				player.setCombat(player.getCombat() - 1);
 			
 				if(player.getCombat() == 0) {
 					player.getPlayer().sendMessage(Language.OUT_OF_COMBAT.getMessage());
+				} else {
+					plugin.getActionBar().send(player.getPlayer(), Language.TAG_BAR_MESSAGE.getMessage().replace("%time%", "" + player.getCombat()));
 				}
 				
 			}

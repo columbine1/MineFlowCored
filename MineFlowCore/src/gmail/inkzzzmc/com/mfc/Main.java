@@ -7,6 +7,8 @@ import gmail.inkzzzmc.com.mfc.language.Language;
 import gmail.inkzzzmc.com.mfc.levels.Level;
 import gmail.inkzzzmc.com.mfc.levels.LevelManager;
 import gmail.inkzzzmc.com.mfc.listeners.*;
+import gmail.inkzzzmc.com.mfc.nms.ActionBar;
+import gmail.inkzzzmc.com.mfc.nms.ActionBar_v1_8_R3;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
 import gmail.inkzzzmc.com.mfc.player.PlayerManager;
 import gmail.inkzzzmc.com.mfc.threads.DiscountTimer;
@@ -37,6 +39,7 @@ public class Main extends JavaPlugin {
 	public static Permission permission = null;
 
 	private WorldGuardPlugin wg;
+	private ActionBar actionBar;
 	
 	@Override
 	public void onEnable() {
@@ -51,7 +54,7 @@ public class Main extends JavaPlugin {
 		LevelManager.getInstance().loadLevels();
 		
 		loadListeners(new PlayerListener(), new PlayerInteract(), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
-		new PlayerTimer().runTaskTimer(this, 20L, 20L);
+		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
 		
@@ -79,6 +82,8 @@ public class Main extends JavaPlugin {
 		Level.setGlobalDiscount(getConfig().getDouble("Global-Discount"), getConfig().getLong("Global-Discount-TimeStamp"));
 
 		wg = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
+
+		setupActionBar();
 
 	}
 	
@@ -193,8 +198,28 @@ public class Main extends JavaPlugin {
 		 
 	 }
 
+	private boolean setupActionBar() {
+		String version;
+
+		try {
+			version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+
+		if(version.equals("v1_8_R3")) {
+			actionBar = new ActionBar_v1_8_R3();
+		}
+
+		return actionBar != null;
+	}
+
 	public WorldGuardPlugin getWorldGuard() {
 		return wg;
 	}
-	
+
+	public ActionBar getActionBar() {
+		return actionBar;
+	}
+
 }
