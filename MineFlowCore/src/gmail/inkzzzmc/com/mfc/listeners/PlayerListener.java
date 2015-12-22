@@ -1,5 +1,6 @@
 package gmail.inkzzzmc.com.mfc.listeners;
 
+import com.massivecraft.factions.struct.Relation;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import gmail.inkzzzmc.com.mfc.Main;
@@ -122,6 +123,10 @@ public class PlayerListener implements Listener {
 			if(fp.getFactionId().equalsIgnoreCase(dp.getFactionId()) ) {
 				return;
 			}
+
+			if(fp.getFaction().getRelationTo(dp.getFaction()) == Relation.ALLY) {
+				return;
+			}
 			
 			fplayer.setCombat(15);
 			fdamager.setCombat(15);
@@ -138,7 +143,7 @@ public class PlayerListener implements Listener {
 	
 	@EventHandler
 	public void onXPReceive(PlayerExpChangeEvent e) {
-		int xp = Integer.valueOf(e.getAmount() * (int) PlayerManager.getPlayer(e.getPlayer()).getXPBoost()); 
+		int xp = e.getAmount() * (int) PlayerManager.getPlayer(e.getPlayer()).getXPBoost();
 		e.setAmount(xp);
 	}
 	
