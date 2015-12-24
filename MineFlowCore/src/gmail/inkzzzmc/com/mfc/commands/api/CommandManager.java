@@ -51,7 +51,7 @@ public class CommandManager {
 		commands.add(new Command_JellyLegs());
 		commands.add(new Command_Fix());
 		commands.add(new Command_Lightning());
-		commands.add(new Command_LevelUP());
+		commands.add(new Command_LevelUP(plugin));
 		commands.add(new Command_Levels());
 		commands.add(new Command_Discount());
 		commands.add(new Command_BoosterGive());

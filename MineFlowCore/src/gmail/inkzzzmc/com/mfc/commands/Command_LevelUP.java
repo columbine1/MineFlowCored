@@ -21,9 +21,9 @@ public class Command_LevelUP extends CommandFactory {
 
 	private final JavaPlugin plugin;
 	
-	public Command_LevelUP() {
+	public Command_LevelUP(JavaPlugin plugin) {
 		super("levelup", false);
-		this.plugin = Main.getPlugin(Main.class);
+		this.plugin = plugin;
 	}
 
 	@Override

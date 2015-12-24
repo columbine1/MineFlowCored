@@ -2,6 +2,7 @@ name: MineflowCore
 main: gmail.inkzzzmc.com.mfc.Main
 version: 1.0
 author: [Inkzzz]
+depend: [DeluxeChat]
 commands:
   logout:
     description: Checks if you are in combat or not.

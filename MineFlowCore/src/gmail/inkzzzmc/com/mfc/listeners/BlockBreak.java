@@ -53,7 +53,7 @@ public class BlockBreak implements Listener {
 						new ItemStack(Material.MOB_SPAWNER, 1, (short) id));
 //			} else {
 //				e.setCancelled(true);
-//				player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
+//				player.sendMessage(language.NOT_ENOUGH_MONEY.getMessage());
 //			}
 		}
 	}
