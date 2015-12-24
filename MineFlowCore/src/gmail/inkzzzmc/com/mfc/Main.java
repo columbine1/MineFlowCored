@@ -11,6 +11,7 @@ import gmail.inkzzzmc.com.mfc.nms.ActionBar;
 import gmail.inkzzzmc.com.mfc.nms.ActionBar_v1_8_R3;
 import gmail.inkzzzmc.com.mfc.player.MineFlowPlayer;
 import gmail.inkzzzmc.com.mfc.player.PlayerManager;
+import gmail.inkzzzmc.com.mfc.ray.NewPlayerJoin;
 import gmail.inkzzzmc.com.mfc.threads.DiscountTimer;
 import gmail.inkzzzmc.com.mfc.threads.PlayerTimer;
 import gmail.inkzzzmc.com.mfc.utils.FileUtil;
@@ -53,7 +54,7 @@ public class Main extends JavaPlugin {
 		
 		LevelManager.getInstance().loadLevels();
 		
-		loadListeners(new PlayerListener(this), new PlayerInteract(this), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
+		loadListeners(new PlayerListener(this), new PlayerInteract(this), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener(), new NewPlayerJoin());
 		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
