@@ -78,6 +78,7 @@ public class Command_LevelUP extends CommandFactory {
 			
 			Bukkit.getPluginManager().callEvent(new LevelChangeEvent(fplayer, level));
 			fplayer.setLevel(level);
+			Main.economy.withdrawPlayer(player, cost);
 			player.sendMessage(Language.LEVELUP.getMessage().replace("%level%", String.valueOf(level.getLevel())));
 			new Cooldown(fplayer, 5, CooldownTypes.LEVELLING, plugin);			
 			
