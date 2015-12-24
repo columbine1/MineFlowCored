@@ -57,24 +57,16 @@ public class Main extends JavaPlugin {
 		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
-		
-		getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-			public void run() {
-				
-				setupEconomy();
-				setupPermissions();
-				
-				if(Bukkit.getOnlinePlayers().size() > 0) {
-					for(Player player : Bukkit.getOnlinePlayers()) {
-						MineFlowPlayer fplayer = new MineFlowPlayer(player);
-						PlayerManager.addPlayer(fplayer);
-					}
-				}
-				
-				
-				
+
+		setupEconomy();
+		setupPermissions();
+
+		if(Bukkit.getOnlinePlayers().size() > 0) {
+			for(Player player : Bukkit.getOnlinePlayers()) {
+				MineFlowPlayer fplayer = new MineFlowPlayer(player);
+				PlayerManager.addPlayer(fplayer);
 			}
-		}, 50L);
+		}
 		
 		chatHook();
 		Language.loadMessages();
