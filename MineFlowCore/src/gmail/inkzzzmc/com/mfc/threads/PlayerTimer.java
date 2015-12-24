@@ -40,13 +40,13 @@ public class PlayerTimer extends BukkitRunnable {
 				
 			}
 			
-			if(player.moneyHasChanged(Main.economy.getBalance(player.getPlayer()))) {
+			if(player.moneyHasChanged(plugin.economy.getBalance(player.getPlayer()))) {
 				
-				int plus = (int) ((int) Main.economy.getBalance(player.getPlayer()) - player.getMoney());
-				int minus = (int) ((int) player.getMoney() - Main.economy.getBalance(player.getPlayer()));
+				int plus = (int) ((int) plugin.economy.getBalance(player.getPlayer()) - player.getMoney());
+				int minus = (int) ((int) player.getMoney() - plugin.economy.getBalance(player.getPlayer()));
 				
-				player.getPlayer().sendMessage(player.getMoney() > Main.economy.getBalance(player.getPlayer()) ? Utils.color("&c&l- $" + minus) : Utils.color("&a&l+ $" + plus));
-				player.setMoney(Main.economy.getBalance(player.getPlayer()));
+				player.getPlayer().sendMessage(player.getMoney() > plugin.economy.getBalance(player.getPlayer()) ? Utils.color("&c&l- $" + minus) : Utils.color("&a&l+ $" + plus));
+				player.setMoney(plugin.economy.getBalance(player.getPlayer()));
 				
 			}
 			

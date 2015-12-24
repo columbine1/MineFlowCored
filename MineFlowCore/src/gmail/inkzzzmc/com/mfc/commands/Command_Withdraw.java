@@ -13,8 +13,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class Command_Withdraw extends CommandFactory {
 
-	public Command_Withdraw() {
+	private Main plugin;
+	
+	public Command_Withdraw(Main plugin) {
 		super("withdraw", false);
+		this.plugin = plugin;
 	}
 
 	@Override
@@ -28,11 +31,11 @@ public class Command_Withdraw extends CommandFactory {
 				
 				int amount = Integer.valueOf(args[0]);
 				
-				if(Main.economy.getBalance(player) >= amount) {
+				if(plugin.economy.getBalance(player) >= amount) {
 					
 					ItemStack paper = new ItemBuilder(Material.PAPER, 0).setName("&b&lMineflow Note &8(&7Right Click&8)").setLore("&bValue&8: &7$" + args[0], "&bSigner&8: &7" + player.getName()).getStack();
 					player.getInventory().addItem(paper);
-					Main.economy.withdrawPlayer(player, amount);
+					plugin.economy.withdrawPlayer(player, amount);
 					return;
 					
 				}

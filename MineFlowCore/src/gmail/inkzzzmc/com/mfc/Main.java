@@ -183,7 +183,8 @@ public class Main extends JavaPlugin {
 					@Override
 					public String onPlaceholderRequest(Player player, String arg) {
 						if(arg.equalsIgnoreCase("level")) {
-							return String.valueOf(PlayerManager.getPlayer(player).getLevel().getLevel());
+							String reply = PlayerManager.getPlayer(player).getLevel().getLevel() + "";
+							return reply.length() < 2 ? "0" + reply : reply;
 						}
 						return null;
 					}

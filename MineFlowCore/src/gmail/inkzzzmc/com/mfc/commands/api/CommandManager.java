@@ -44,7 +44,7 @@ public class CommandManager {
 			commands = new HashSet<>();
 		}
 		commands.add(new Command_Logout());
-		commands.add(new Command_Withdraw());
+		commands.add(new Command_Withdraw(plugin));
 		commands.add(new Command_WithdrawEXP());
 		commands.add(new Command_Wild());
 		commands.add(new Command_WithdrawMcMMO());
