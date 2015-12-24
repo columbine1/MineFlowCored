@@ -29,13 +29,19 @@ import com.massivecraft.factions.FPlayers;
 
 public class PlayerListener implements Listener {
 
+	private Main plugin;
+
+	public PlayerListener(Main plugin) {
+		this.plugin = plugin;
+	}
+
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent e) {
 
 		Player player = e.getPlayer();
 		
 		if(!PlayerManager.isMineFlowPlayer(player)) {
-			MineFlowPlayer fplayer = new MineFlowPlayer(player);
+			MineFlowPlayer fplayer = new MineFlowPlayer(player, plugin);
 			PlayerManager.addPlayer(fplayer);
 		} else {
 
@@ -95,16 +101,16 @@ public class PlayerListener implements Listener {
 			MineFlowPlayer fplayer = PlayerManager.getPlayer(player);
 			MineFlowPlayer fdamager = PlayerManager.getPlayer(damager);
 
+			ApplicableRegionSet regionSet = plugin.getWorldGuard().getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation());
+			if(!regionSet.allows(DefaultFlag.PVP)) {
+				return;
+			}
+
 			if(!fplayer.isInCombat()) {	player.sendMessage(Language.PLAYER_TAG.getMessage().replace("%player%", damager.getName())); }
 			if(!fdamager.isInCombat()) { damager.sendMessage(Language.ATTACKER_TAG.getMessage().replace("%player%", player.getName())); }
 			
 			FPlayer fp = FPlayers.getInstance().getByPlayer(player);
 			FPlayer dp = FPlayers.getInstance().getByPlayer(damager);
-
-			ApplicableRegionSet regionSet = Main.getPlugin(Main.class).getWorldGuard().getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation());
-			if(!regionSet.allows(DefaultFlag.PVP)) {
-				return;
-			}
 
 			if(!fp.hasFaction() || !dp.hasFaction()) {
 				fplayer.setCombat(15);

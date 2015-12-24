@@ -19,9 +19,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Command_LevelUP extends CommandFactory {
 
-	private final JavaPlugin plugin;
+	private final Main plugin;
 	
-	public Command_LevelUP(JavaPlugin plugin) {
+	public Command_LevelUP(Main plugin) {
 		super("levelup", false);
 		this.plugin = plugin;
 	}
@@ -62,7 +62,7 @@ public class Command_LevelUP extends CommandFactory {
 			cost -= personal;
 		}
 		
-		if(Main.economy.getBalance(player) < cost) {
+		if(plugin.economy.getBalance(player) < cost) {
 			player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
 			return;
 		}
@@ -74,11 +74,10 @@ public class Command_LevelUP extends CommandFactory {
 			
 		}
 		
-		if(Main.economy.withdrawPlayer(player, cost).transactionSuccess()) {
+		if(plugin.economy.withdrawPlayer(player, cost).transactionSuccess()) {
 			
 			Bukkit.getPluginManager().callEvent(new LevelChangeEvent(fplayer, level));
 			fplayer.setLevel(level);
-			Main.economy.withdrawPlayer(player, cost);
 			player.sendMessage(Language.LEVELUP.getMessage().replace("%level%", String.valueOf(level.getLevel())));
 			new Cooldown(fplayer, 5, CooldownTypes.LEVELLING, plugin);			
 			

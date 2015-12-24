@@ -35,7 +35,7 @@ public class Main extends JavaPlugin {
 	 */
 	public static final String[] ranks = {"epic", "mythic", "omega", "titan", "legend"};
 	
-	public static Economy economy = null;
+	public Economy economy = null;
 	public static Permission permission = null;
 
 	private WorldGuardPlugin wg;
@@ -53,17 +53,26 @@ public class Main extends JavaPlugin {
 		
 		LevelManager.getInstance().loadLevels();
 		
-		loadListeners(new PlayerListener(), new PlayerInteract(), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
+		loadListeners(new PlayerListener(this), new PlayerInteract(this), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
 		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
 
-		setupEconomy();
-		setupPermissions();
+		if(setupEconomy()) {
+			getLogger().info("Successfully setup Economy!");
+		} else {
+			getLogger().info("Unable to setup economy");
+		}
+
+		if(setupPermissions()) {
+			getLogger().info("Successfully setup Permissions");
+		} else {
+			getLogger().info("Unable to setup permissions");
+		}
 
 		if(Bukkit.getOnlinePlayers().size() > 0) {
 			for(Player player : Bukkit.getOnlinePlayers()) {
-				MineFlowPlayer fplayer = new MineFlowPlayer(player);
+				MineFlowPlayer fplayer = new MineFlowPlayer(player, this);
 				PlayerManager.addPlayer(fplayer);
 			}
 		}

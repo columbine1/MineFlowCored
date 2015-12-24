@@ -24,6 +24,12 @@ import com.gmail.nossr50.datatypes.skills.SkillType;
 
 public class PlayerInteract implements Listener {
 
+	private Main plugin;
+
+	public PlayerInteract(Main plugin) {
+		this.plugin = plugin;
+	}
+
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
 		Player player = e.getPlayer();
@@ -51,7 +57,7 @@ public class PlayerInteract implements Listener {
 					player.getInventory().addItem(itemstack);
 				}
 				
-				Main.economy.depositPlayer(player, money);
+				plugin.economy.depositPlayer(player, money);
 				player.sendMessage(Language.NOTE_REDEEM.getMessage().replace("%amount%", String.valueOf(money)));
 				return;
 			}

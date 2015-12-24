@@ -1,5 +1,6 @@
 package gmail.inkzzzmc.com.mfc.commands.api;
 
+import gmail.inkzzzmc.com.mfc.Main;
 import gmail.inkzzzmc.com.mfc.commands.Command_AddCredits;
 import gmail.inkzzzmc.com.mfc.commands.Command_BoosterGive;
 import gmail.inkzzzmc.com.mfc.commands.Command_Credits;
@@ -38,9 +39,9 @@ public class CommandManager {
 	 * Registers commands along with their variables (name, arguments, permission, allowconsole)
 	 * 
 	 */
-	public CommandManager(final JavaPlugin plugin) {
+	public CommandManager(final Main plugin) {
 		if(commands == null) {
-			commands = new HashSet<CommandFactory>();
+			commands = new HashSet<>();
 		}
 		commands.add(new Command_Logout());
 		commands.add(new Command_Withdraw());

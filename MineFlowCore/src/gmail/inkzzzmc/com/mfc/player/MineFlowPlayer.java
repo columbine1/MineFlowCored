@@ -23,6 +23,7 @@ public class MineFlowPlayer {
 	private boolean jellylegs;
 	private long fix_timestamp;
 	private long lightning_timestamp;
+	private Main plugin;
 	
 	private int credits;
 	
@@ -32,12 +33,13 @@ public class MineFlowPlayer {
 	private int gapples;
 	private boolean to_kill;
 	
-	public MineFlowPlayer(Player player) {
+	public MineFlowPlayer(Player player, Main plugin) {
+		this.plugin = plugin;
 		this.player = player;
 		this.uuid = player.getUniqueId();
 		this.combat = 0;
 		this.xp = PlayerManager.setXPLevels(this);
-		this.money = Main.economy.getBalance(player);
+		this.money = plugin.economy.getBalance(player);
 		this.wildTimestamp = 0;
 		this.jellylegs = player.hasPermission("mineflow.jellylegs");
 		this.fix_timestamp = 0;
