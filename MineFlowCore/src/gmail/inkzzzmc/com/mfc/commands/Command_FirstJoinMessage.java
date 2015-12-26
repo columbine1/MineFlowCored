@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class Command_FirstJoinMessage extends CommandFactory {
 
     public Command_FirstJoinMessage() {
-        super("setfjmessage", "litebans.mute", false);
+        super("welcomemessage", "litebans.mute", false);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Command_FirstJoinMessage extends CommandFactory {
             return;
         }
 
-        sender.sendMessage(Language.USAGE.getMessage().replace("%command%", "setfjmessage <on/off/message>\n&ePlaceholders:\n &e- %newplayer%"));
+        sender.sendMessage(Language.USAGE.getMessage().replace("%command%", "welcomemessage <on/off/message>\n&ePlaceholders:\n &e- %newplayer%"));
     }
 
 }
