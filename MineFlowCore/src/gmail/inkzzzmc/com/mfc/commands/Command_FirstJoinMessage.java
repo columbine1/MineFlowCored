@@ -17,6 +17,21 @@ public class Command_FirstJoinMessage extends CommandFactory {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length >= 1) {
+            FileConfiguration file = FileUtil.getFile("firstjoinmessages.yml");
+
+            if(args[0].equalsIgnoreCase("on")) {
+                sender.sendMessage(Language.FIRST_JOIN_MESSAGE_ON.getMessage());
+
+                return;
+            } else if(args[0].equalsIgnoreCase("off")) {
+                file.set("messages." + ((Player) sender).getUniqueId(), null);
+                FileUtil.saveFile(file, "firstjoinmessages.yml");
+
+                sender.sendMessage(Language.FIRST_JOIN_MESSAGE_OFF.getMessage());
+
+                return;
+            }
+
             String message = "";
 
             for(int i = 0; i < args.length; i++) {
@@ -24,8 +39,6 @@ public class Command_FirstJoinMessage extends CommandFactory {
             }
 
             message = message.substring(0, message.length() - 1);
-
-            FileConfiguration file = FileUtil.getFile("firstjoinmessages.yml");
             file.set("messages." + ((Player) sender).getUniqueId(), message);
             FileUtil.saveFile(file, "filesjoinmessages.yml");
 
@@ -33,7 +46,7 @@ public class Command_FirstJoinMessage extends CommandFactory {
             return;
         }
 
-        sender.sendMessage(Language.USAGE.getMessage().replace("%command%", "setfjmessage <message>"));
+        sender.sendMessage(Language.USAGE.getMessage().replace("%command%", "setfjmessage <on/off/message>\n&ePlaceholders:\n &e- %newplayer%"));
     }
 
 }

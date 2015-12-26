@@ -60,7 +60,9 @@ public enum Language {
 	SPAWNER_DENY("SPAWNER_DENY", "%prefix% &cYou must be a donator to mine spawners!"),
 	LEVEL_COOLDOWN("LEVEL COOLDOWN", "%prefix% &eYou can level-up again in &7%time% &eseconds!"),
 	STRENGTH_DISABLE("STRENGTH_DISABLE", "%prefix% &eStrength II potions are currently disabled."),
-	FIRST_JOIN_MESSAGE("FIRST_JOIN_MESSAGE", "%prefix% &eYou have set your first join message to:\n%message%");
+	FIRST_JOIN_MESSAGE("FIRST_JOIN_MESSAGE", "%prefix% &eYou have set your first join message to:\n%message%"),
+	FIRST_JOIN_MESSAGE_OFF("FIRST_JOIN_MESSAGE_OFF", "%prefix% &eYou have toggled off your first whalecum message."),
+	FIRST_JOIN_MESSAGE_ON("FIRST_JOIN_MESSAGE_ON", "%prefix% &eUse /setfjmessage <message>, to toggle on your welcome message.");
 	
 	private final String path;
 	private String message;
