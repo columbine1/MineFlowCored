@@ -20,7 +20,7 @@ public class Command_FirstJoinMessage extends CommandFactory {
             String message = "";
 
             for(int i = 0; i < args.length; i++) {
-                message += args[i];
+                message += args[i] + " ";
             }
 
             message = message.substring(0, message.length() - 1);
