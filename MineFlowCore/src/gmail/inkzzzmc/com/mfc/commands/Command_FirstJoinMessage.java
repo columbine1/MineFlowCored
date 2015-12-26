@@ -16,8 +16,15 @@ public class Command_FirstJoinMessage extends CommandFactory {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(args.length == 1) {
-            String message = args[0];
+        if(args.length >= 1) {
+            String message = "";
+
+            for(int i = 0; i < args.length; i++) {
+                message += args[i];
+            }
+
+            message = message.substring(0, message.length() - 1);
+
             FileConfiguration file = FileUtil.getFile("firstjoinmessages.yml");
             file.set("messages." + ((Player) sender).getUniqueId(), message);
             FileUtil.saveFile(file, "filesjoinmessages.yml");

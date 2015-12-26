@@ -42,3 +42,5 @@ commands:
     description: Checks how many credits you have!
   redeem:
     description: Redeems credits to a skill!
+  setfjmessage:
+    description: Sets your first join message.
