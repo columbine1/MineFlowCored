@@ -59,7 +59,8 @@ public enum Language {
 	SPAWNER_GIVE("SPAWNER_GIVE", "%prefix% &7You have given &e%player% &7a &e%type% &7spawner!"),
 	SPAWNER_DENY("SPAWNER_DENY", "%prefix% &cYou must be a donator to mine spawners!"),
 	LEVEL_COOLDOWN("LEVEL COOLDOWN", "%prefix% &eYou can level-up again in &7%time% &eseconds!"),
-	STRENGTH_DISABLE("STRENGTH_DISABLE", "%prefix% &eStrength II potions are currently disabled.");
+	STRENGTH_DISABLE("STRENGTH_DISABLE", "%prefix% &eStrength II potions are currently disabled."),
+	FIRST_JOIN_MESSAGE("FIRST_JOIN_MESSAGE", "%prefix% &eYou have set your first join message to:\n%message%");
 	
 	private final String path;
 	private String message;

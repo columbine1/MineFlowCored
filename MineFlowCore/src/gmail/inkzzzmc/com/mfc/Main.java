@@ -3,6 +3,7 @@ package gmail.inkzzzmc.com.mfc;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandFactory;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandManager;
+import gmail.inkzzzmc.com.mfc.firstjoin.FirstJoin;
 import gmail.inkzzzmc.com.mfc.language.Language;
 import gmail.inkzzzmc.com.mfc.levels.Level;
 import gmail.inkzzzmc.com.mfc.levels.LevelManager;
@@ -50,10 +51,11 @@ public class Main extends JavaPlugin {
 		FileUtil.getFile("messages.yml");
 		FileUtil.getFile("players.yml");
 		FileUtil.getFile("levels.yml");
+		FileUtil.getFile("firstjoinmessages.yml");
 		
 		LevelManager.getInstance().loadLevels();
 		
-		loadListeners(new PlayerListener(this), new PlayerInteract(this), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener());
+		loadListeners(new PlayerListener(this), new PlayerInteract(this), new PlayerDeath(this), new SkillLevelChange(), new CraftItem(), new ProjectileLaunch(this), new LevelChange(), new ConsumeListener(this), new FlyListener(), new FirstJoin(this));
 		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);

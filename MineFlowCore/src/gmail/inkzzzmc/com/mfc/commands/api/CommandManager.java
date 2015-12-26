@@ -1,25 +1,7 @@
 package gmail.inkzzzmc.com.mfc.commands.api;
 
 import gmail.inkzzzmc.com.mfc.Main;
-import gmail.inkzzzmc.com.mfc.commands.Command_AddCredits;
-import gmail.inkzzzmc.com.mfc.commands.Command_BoosterGive;
-import gmail.inkzzzmc.com.mfc.commands.Command_Credits;
-import gmail.inkzzzmc.com.mfc.commands.Command_Discount;
-import gmail.inkzzzmc.com.mfc.commands.Command_Feed;
-import gmail.inkzzzmc.com.mfc.commands.Command_Fix;
-import gmail.inkzzzmc.com.mfc.commands.Command_GiveSpawner;
-import gmail.inkzzzmc.com.mfc.commands.Command_Giveccegg;
-import gmail.inkzzzmc.com.mfc.commands.Command_JellyLegs;
-import gmail.inkzzzmc.com.mfc.commands.Command_LevelUP;
-import gmail.inkzzzmc.com.mfc.commands.Command_Levels;
-import gmail.inkzzzmc.com.mfc.commands.Command_Lightning;
-import gmail.inkzzzmc.com.mfc.commands.Command_Logout;
-import gmail.inkzzzmc.com.mfc.commands.Command_Redeem;
-import gmail.inkzzzmc.com.mfc.commands.Command_RemoveCredits;
-import gmail.inkzzzmc.com.mfc.commands.Command_Wild;
-import gmail.inkzzzmc.com.mfc.commands.Command_Withdraw;
-import gmail.inkzzzmc.com.mfc.commands.Command_WithdrawEXP;
-import gmail.inkzzzmc.com.mfc.commands.Command_WithdrawMcMMO;
+import gmail.inkzzzmc.com.mfc.commands.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -62,6 +44,7 @@ public class CommandManager {
 		commands.add(new Command_RemoveCredits());
 		commands.add(new Command_Credits());
 		commands.add(new Command_Redeem());
+		commands.add(new Command_FirstJoinMessage());
 	}
 	
 	/**
