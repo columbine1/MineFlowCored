@@ -1,5 +1,6 @@
 package gmail.inkzzzmc.com.mfc;
 
+import com.earth2me.essentials.api.Economy;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandFactory;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandManager;
@@ -17,7 +18,6 @@ import gmail.inkzzzmc.com.mfc.threads.PlayerTimer;
 import gmail.inkzzzmc.com.mfc.utils.FileUtil;
 import me.clip.deluxechat.placeholders.DeluxePlaceholderHook;
 import me.clip.deluxechat.placeholders.PlaceholderHandler;
-import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.Bukkit;
@@ -35,13 +35,12 @@ public class Main extends JavaPlugin {
 	 * MineFlow faction ranks.
 	 */
 	public static final String[] ranks = {"epic", "mythic", "omega", "titan", "legend"};
-	
-	public Economy economy = null;
+
 	public static Permission permission = null;
 
 	private WorldGuardPlugin wg;
 	private ActionBar actionBar;
-	
+
 	@Override
 	public void onEnable() {
 		
@@ -59,12 +58,6 @@ public class Main extends JavaPlugin {
 		new PlayerTimer(this).runTaskTimer(this, 20L, 20L);
 		new DiscountTimer().runTaskTimer(this, 20L, 20L);
 		new CommandManager(this);
-
-		if(setupEconomy()) {
-			getLogger().info("Successfully setup Economy!");
-		} else {
-			getLogger().info("Unable to setup economy");
-		}
 
 		if(setupPermissions()) {
 			getLogger().info("Successfully setup Permissions");
@@ -153,17 +146,6 @@ public class Main extends JavaPlugin {
 		}
 		return true;	
 	}
-	
-	 /**
-	 * Sets up vault economy.
-	 */
-	 private boolean setupEconomy() {
-	     RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-	     if (economyProvider != null) {
-	        economy = economyProvider.getProvider();
-	     }
-	    return (economy != null);
-	 }
 	 
 	 /**
 	  * Sets up vault permissions.

@@ -1,5 +1,8 @@
 package gmail.inkzzzmc.com.mfc.commands;
 
+import com.earth2me.essentials.api.Economy;
+import com.earth2me.essentials.api.NoLoanPermittedException;
+import com.earth2me.essentials.api.UserDoesNotExistException;
 import gmail.inkzzzmc.com.mfc.Main;
 import gmail.inkzzzmc.com.mfc.commands.api.CommandFactory;
 import gmail.inkzzzmc.com.mfc.cooldowns.Cooldown;
@@ -16,6 +19,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.math.BigDecimal;
 
 public class Command_LevelUP extends CommandFactory {
 
@@ -61,34 +66,45 @@ public class Command_LevelUP extends CommandFactory {
 		} else {
 			cost -= personal;
 		}
-		
-		if(plugin.economy.getBalance(player) < cost) {
-			player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
-			return;
+
+		try {
+			if(Economy.getMoneyExact(player.getName()).doubleValue() < cost) {
+                player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
+                return;
+            }
+            else if(CooldownManager.isCooldown(fplayer, CooldownTypes.LEVELLING)) {
+
+                int seconds = CooldownManager.getCooldown(fplayer, CooldownTypes.LEVELLING).getTime();
+                player.sendMessage(Language.LEVEL_COOLDOWN.getMessage().replace("%time%", String.valueOf(seconds)));
+                return;
+
+            }
+		} catch (UserDoesNotExistException e) {
+			e.printStackTrace();
 		}
-		else if(CooldownManager.isCooldown(fplayer, CooldownTypes.LEVELLING)) {
-			
-			int seconds = CooldownManager.getCooldown(fplayer, CooldownTypes.LEVELLING).getTime();
-			player.sendMessage(Language.LEVEL_COOLDOWN.getMessage().replace("%time%", String.valueOf(seconds)));
-			return;
-			
+
+		try {
+			if(Economy.getMoneyExact(player.getName()).doubleValue() < cost) {
+
+                Bukkit.getPluginManager().callEvent(new LevelChangeEvent(fplayer, level));
+                fplayer.setLevel(level);
+				Economy.substract(player.getName(), BigDecimal.valueOf(cost));
+                player.sendMessage(Language.LEVELUP.getMessage().replace("%level%", String.valueOf(level.getLevel())));
+                new Cooldown(fplayer, 5, CooldownTypes.LEVELLING, plugin);
+
+            }
+            else
+            {
+
+                player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
+
+            }
+		} catch (UserDoesNotExistException e) {
+			e.printStackTrace();
+		} catch (NoLoanPermittedException e) {
+			e.printStackTrace();
 		}
-		
-		if(plugin.economy.withdrawPlayer(player, cost).transactionSuccess()) {
-			
-			Bukkit.getPluginManager().callEvent(new LevelChangeEvent(fplayer, level));
-			fplayer.setLevel(level);
-			player.sendMessage(Language.LEVELUP.getMessage().replace("%level%", String.valueOf(level.getLevel())));
-			new Cooldown(fplayer, 5, CooldownTypes.LEVELLING, plugin);			
-			
-		}
-		else
-		{
-			
-			player.sendMessage(Language.NOT_ENOUGH_MONEY.getMessage());
-			
-		}
-		
+
 	}
 	
 }
