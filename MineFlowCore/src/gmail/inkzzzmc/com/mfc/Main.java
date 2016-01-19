@@ -41,7 +41,7 @@ public class Main extends JavaPlugin {
 
 	private WorldGuardPlugin wg;
 	private ActionBar actionBar;
-	
+
 	@Override
 	public void onEnable() {
 		
